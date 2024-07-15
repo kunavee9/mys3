@@ -29,6 +29,12 @@ stages:
              
          - task: TerraformCLI@2
            inputs:
+             command: 'validate'
+             commandOptions: '-var = var.aws_access_key =$(accesskey) -var =var.aws_access_key=$(secretkey)'
+             allowTelemetryCollection: true
+             
+         - task: TerraformCLI@2
+           inputs:
              command: 'plan'
              environmentServiceName: 'AN-serviceconnection'
              commandOptions: '''-var = var.aws_access_key =$(accesskey) -var =var.aws_access_key=$(secretkey)'
