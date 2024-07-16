@@ -50,6 +50,8 @@ stages:
            inputs:
              command: 'apply'
              environmentServiceName: 'AN-serviceconnection'
-             allowTelemetryCollection: true
-             providerServiceAws: 'AWSconnection'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: false
+             providerServiceAws: 'new-aws-sc'
+             providerAwsRegion: 'us-east-1'
          
