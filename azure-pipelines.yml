@@ -19,24 +19,28 @@ stages:
      - job: Repo_clone
        steps:
          - task: TerraformInstaller@2
+           displayName: 'Install terraform'
            inputs:
              terraformVersion: 'latest'
             
          - task: TerraformCLI@2
+           displayName: 'Terraform init'
            inputs:
              command: 'init'
              allowTelemetryCollection: true
              
          - task: TerraformCLI@2
+           displayName: 'Terraform validate'
            inputs:
              command: 'validate'
              allowTelemetryCollection: true
              
          - task: TerraformCLI@2
+           displayName: 'Terraform Plan'
            inputs:
              command: 'plan'
              environmentServiceName: 'AN-serviceconnection'
-             commandOptions: '''-var = var.aws_access_key =$(accesskey) -var =var.aws_access_key=$(secretkey)'
+             commandOptions: '-var aws_access_key=$(accesskey) -var aws_access_key=$(secretkey)'
              allowTelemetryCollection: true
              providerServiceAws: 'AWSconnection'
 
