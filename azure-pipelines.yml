@@ -41,8 +41,10 @@ stages:
              command: 'plan'
              environmentServiceName: 'AN-serviceconnection'
              commandOptions: '-var aws_access_key=$(accesskey) -var aws_access_key=$(secretkey)'
-             allowTelemetryCollection: true
+             allowTelemetryCollection: false
              providerServiceAws: 'AWSconnection'
+             providerAwsRegion: 'us-west-2'
+             
 
          - task: TerraformCLI@2
            inputs:
