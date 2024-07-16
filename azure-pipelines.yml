@@ -42,14 +42,14 @@ stages:
              environmentServiceName: 'AN-serviceconnection'
              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: false
-             providerServiceAws: 'AWSconnection'
+             providerServiceAws: 'new-aws-sc'
              providerAwsRegion: 'us-east-1'
              
 
-         - task: TerraformCLI@2
-           inputs:
-             command: 'apply'
-             environmentServiceName: 'AN-serviceconnection'
-             allowTelemetryCollection: true
-             providerServiceAws: 'AWSconnection'
+        #  - task: TerraformCLI@2
+        #    inputs:
+        #      command: 'apply'
+        #      environmentServiceName: 'AN-serviceconnection'
+        #      allowTelemetryCollection: true
+        #      providerServiceAws: 'AWSconnection'
          
