@@ -43,7 +43,7 @@ stages:
              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: false
              providerServiceAws: 'AWSconnection'
-             providerAwsRegion: 'us-west-2'
+             providerAwsRegion: 'us-east-1'
              
 
          - task: TerraformCLI@2
