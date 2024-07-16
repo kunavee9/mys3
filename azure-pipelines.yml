@@ -39,7 +39,7 @@ stages:
            displayName: 'Terraform Plan'
            inputs:
              command: 'plan'
-             environmentServiceName: 'AN-serviceconnection'
+            #  environmentServiceName: 'AN-serviceconnection'
              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: false
              providerServiceAws: 'new-aws-sc'
@@ -49,7 +49,7 @@ stages:
          - task: TerraformCLI@2
            inputs:
              command: 'apply'
-             environmentServiceName: 'AN-serviceconnection'
+            #  environmentServiceName: 'AN-serviceconnection'
              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: false
              providerServiceAws: 'new-aws-sc'
