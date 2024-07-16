@@ -40,7 +40,7 @@ stages:
            inputs:
              command: 'plan'
              environmentServiceName: 'AN-serviceconnection'
-             commandOptions: '-var aws_access_key=$(accesskey) -var aws_access_key=$(secretkey)'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: false
              providerServiceAws: 'AWSconnection'
              providerAwsRegion: 'us-west-2'
