@@ -13,9 +13,10 @@ variables:
   - group: awskeys
 
 parameters:
-- name: Command
+- name: myinput
   displayName: Terraform commands 
   type: string
+  default: "hello"
 
 stages:
   - stage: init
@@ -23,6 +24,9 @@ stages:
     jobs:
      - job: Repo_clone
        steps:
+         - script: |
+            echo "${{parameters.myinput}}"
+
          - task: TerraformInstaller@2
            inputs:
              terraformVersion: 'latest'
@@ -32,25 +36,25 @@ stages:
              command: 'init'
              allowTelemetryCollection: true
          
-         - task: TerraformCLI@2
-           inputs:
-             command: 'validate'
-             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-             allowTelemetryCollection: true
+        #  - task: TerraformCLI@2
+        #    inputs:
+        #      command: 'validate'
+        #      commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+        #      allowTelemetryCollection: true
          
-         - task: TerraformCLI@2
-           inputs:
-             command: 'plan'
-             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-             allowTelemetryCollection: true
-             providerServiceAws: 'AWSconnectiontest'
+        #  - task: TerraformCLI@2
+        #    inputs:
+        #      command: 'plan'
+        #      commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+        #      allowTelemetryCollection: true
+        #      providerServiceAws: 'AWSconnectiontest'
          
-         - task: TerraformCLI@2
-           inputs:
-             command: 'apply'
-             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-             allowTelemetryCollection: true
-             providerServiceAws: 'AWSconnectiontest'
+        #  - task: TerraformCLI@2
+        #    inputs:
+        #      command: 'apply'
+        #      commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+        #      allowTelemetryCollection: true
+        #      providerServiceAws: 'AWSconnectiontest'
              
          - task: TerraformCLI@2
            inputs:
