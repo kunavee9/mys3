@@ -51,7 +51,7 @@ stages:
         #      allowTelemetryCollection: true
         #      providerServiceAws: 'AWSconnectiontest'
          - script: terraform ${{parameters.myinput}} var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"
-             
+           workingDirectory: '$(System.DefaultWorkingDirectory)'  
          
          - task: TerraformCLI@2
            inputs:
