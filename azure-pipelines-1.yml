@@ -40,7 +40,6 @@ stages:
          - task: TerraformCLI@2
            inputs:
              command: 'validate'
-             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: true
          
         #  - task: TerraformCLI@2
