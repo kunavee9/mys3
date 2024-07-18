@@ -35,7 +35,7 @@ stages:
            inputs:
              command: 'init'
              allowTelemetryCollection: true
-         - script: "${{parameters.myinput}}"
+         
          
          - task: TerraformCLI@2
            inputs:
@@ -49,6 +49,7 @@ stages:
              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: true
              providerServiceAws: 'AWSconnectiontest'
+         - script: "${{parameters.myinput}}"
              
          
          - task: TerraformCLI@2
