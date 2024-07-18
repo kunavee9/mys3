@@ -16,7 +16,7 @@ parameters:
 - name: myinput
   displayName: Terraform commands 
   type: string
-  default: "hello"
+  default: "plan"
 
 stages:
   - stage: init
@@ -34,27 +34,29 @@ stages:
          - task: TerraformCLI@2
            inputs:
              command: 'init'
+             commandOptions: '-var="myinput=${{parameters.myinput}}"'
              allowTelemetryCollection: true
          
-        #  - task: TerraformCLI@2
-        #    inputs:
-        #      command: 'validate'
-        #      commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-        #      allowTelemetryCollection: true
+         - task: TerraformCLI@2
+           inputs:
+             command: 'validate'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: true
          
-        #  - task: TerraformCLI@2
-        #    inputs:
-        #      command: 'plan'
-        #      commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-        #      allowTelemetryCollection: true
-        #      providerServiceAws: 'AWSconnectiontest'
+         - task: TerraformCLI@2
+           inputs:
+             command: 'plan'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: true
+             providerServiceAws: 'AWSconnectiontest'
+             
          
-        #  - task: TerraformCLI@2
-        #    inputs:
-        #      command: 'apply'
-        #      commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-        #      allowTelemetryCollection: true
-        #      providerServiceAws: 'AWSconnectiontest'
+         - task: TerraformCLI@2
+           inputs:
+             command: 'apply'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: true
+             providerServiceAws: 'AWSconnectiontest'
              
          - task: TerraformCLI@2
            inputs:
