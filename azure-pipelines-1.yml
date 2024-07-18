@@ -1,0 +1,59 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: awskeys
+
+parameters:
+- name: Command
+  displayName: Terraform commands 
+  type: string
+
+stages:
+  - stage: init
+    displayName: "Copying repo" 
+    jobs:
+     - job: Repo_clone
+       steps:
+         - task: TerraformInstaller@2
+           inputs:
+             terraformVersion: 'latest'
+         
+         - task: TerraformCLI@2
+           inputs:
+             command: 'init'
+             allowTelemetryCollection: true
+         
+         - task: TerraformCLI@2
+           inputs:
+             command: 'validate'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: true
+         
+         - task: TerraformCLI@2
+           inputs:
+             command: 'plan'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: true
+             providerServiceAws: 'AWSconnectiontest'
+         
+         - task: TerraformCLI@2
+           inputs:
+             command: 'apply'
+             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+             allowTelemetryCollection: true
+             providerServiceAws: 'AWSconnectiontest'
+             
+         - task: TerraformCLI@2
+           inputs:
+              command: 'destroy'
+              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+              allowTelemetryCollection: true
