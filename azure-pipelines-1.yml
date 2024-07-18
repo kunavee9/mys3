@@ -43,13 +43,13 @@ stages:
              commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
              allowTelemetryCollection: true
          
-         - task: TerraformCLI@2
-           inputs:
-             command: 'plan'
-             commandOptions: '-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
-             allowTelemetryCollection: true
-             providerServiceAws: 'AWSconnectiontest'
-         - script: "${{parameters.myinput}}"
+        #  - task: TerraformCLI@2
+        #    inputs:
+        #      command: 'plan'
+        #      commandOptions: 'terra-var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"'
+        #      allowTelemetryCollection: true
+        #      providerServiceAws: 'AWSconnectiontest'
+         - script: terraform ${{parameters.myinput}} var "aws_access_key=$(accesskey)" -var "aws_secret_key=$(secretkey)"
              
          
          - task: TerraformCLI@2
