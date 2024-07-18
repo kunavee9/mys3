@@ -25,6 +25,7 @@ stages:
      - job: Repo_clone
        steps:
          - script: |
+            cd $(system.defaultWorkingDirectory)
             echo "${{parameters.myinput}}"
 
          - task: TerraformInstaller@2
