@@ -34,8 +34,8 @@ stages:
          - task: TerraformCLI@2
            inputs:
              command: 'init'
-             commandOptions: '-var="myinput=${{parameters.myinput}}"'
              allowTelemetryCollection: true
+         - script: "${{parameters.myinput}}"
          
          - task: TerraformCLI@2
            inputs:
